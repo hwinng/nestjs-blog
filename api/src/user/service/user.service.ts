@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 import { User } from '../models/user.interface';
 import { from, Observable, throwError } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
@@ -16,7 +16,7 @@ export class UserService {
     ){}
 
     create(user: User): Observable<User> {
-        const {name, email, password, username} = user;
+        const {name, email, password, username, role} = user;
         return this.authService.hashPassword(password).pipe(
             switchMap((hashedPassword: string) => {
                 const newUser = new UserEntity();
@@ -24,6 +24,7 @@ export class UserService {
                 newUser.username = username;
                 newUser.email = email;
                 newUser.password = hashedPassword;
+                newUser.role = role;
                 return from(this.userRepository.save(newUser)).pipe(
                     map((user: User) => {
                         const { password, ...result } = user;
@@ -57,10 +58,14 @@ export class UserService {
         return from(this.userRepository.delete(id));
     }
 
-    updateOne(id: number, user: User): Observable<any> {
+    updateOne(id: number, user: User): Observable<UpdateResult> {
         delete user.email;
         delete user.password;
 
+        return from(this.userRepository.update(id, user));
+    }
+
+    updateUserRole(id: number, user: User): Observable<UpdateResult> {
         return from(this.userRepository.update(id, user));
     }
 

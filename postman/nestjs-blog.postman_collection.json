@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Phillip Ng\",\n    \"username\": \"Phillip\"\n}",
+							"raw": "{\n    \"name\": \"Hollan\",\n    \"username\": \"hollan_123\",\n    \"email\": \"holland@gmail.com\",\n    \"password\": \"hollan123456\",\n    \"role\": \"admin\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -59,6 +59,16 @@
 				{
 					"name": "find all users",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo4LCJuYW1lIjoiSG9sbGFuIiwidXNlcm5hbWUiOiJob2xsYW5fMTIzIiwiZW1haWwiOiJob2xsYW5kQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiJ9LCJpYXQiOjE2MTM3MDM3NTEsImV4cCI6MTYxMzcxMzc1MX0.mHHECAKDWZ-xblG87s45srRnOASHFbAgTmZgoJy-RZw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -131,7 +141,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"allen@gmail.com\",\n    \"password\": \"allen123456\"\n}",
+							"raw": "{\n    \"email\": \"holland@gmail.com\",\n    \"password\": \"hollan123456\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -154,6 +164,36 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "update user role",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"role\": \"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/5/role",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"5",
+						"role"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
