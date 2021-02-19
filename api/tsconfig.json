@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
     "module": "commonjs",
     "declaration": true,
     "removeComments": true,
@@ -10,6 +12,7 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true
-  }
+    "incremental": true,
+    "moduleResolution": "node",
+  },
 }

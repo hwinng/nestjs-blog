@@ -1,0 +1,296 @@
+{
+	"info": {
+		"_postman_id": "87e1afd8-d16c-4358-8f77-1da06e1b4f8b",
+		"name": "nestjs-blog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user-api",
+			"item": [
+				{
+					"name": "get profile image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/profile-image/3DF4D502-BBE3-4006-805D-71BBB6509797a0b71d61-e8ec-42e7-b57c-cc9742a242d3.jpeg",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"profile-image",
+								"3DF4D502-BBE3-4006-805D-71BBB6509797a0b71d61-e8ec-42e7-b57c-cc9742a242d3.jpeg"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Hollan\",\n    \"username\": \"hollan_123\",\n    \"email\": \"holland@gmail.com\",\n    \"password\": \"hollan123456\",\n    \"role\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find one user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find all users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo4LCJuYW1lIjoiSG9sbGFuIiwidXNlcm5hbWUiOiJob2xsYW5fMTIzIiwiZW1haWwiOiJob2xsYW5kQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiJ9LCJpYXQiOjE2MTM3MDM3NTEsImV4cCI6MTYxMzcxMzc1MX0.mHHECAKDWZ-xblG87s45srRnOASHFbAgTmZgoJy-RZw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete one user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update one user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"a\",\n    \"username\": \"b\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"holland@gmail.com\",\n    \"password\": \"hollan123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user role",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"role\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/5/role",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"5",
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filter by username",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users?page=1&limit=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post/update profile picture",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo4LCJuYW1lIjoiSG9sbGFuIiwidXNlcm5hbWUiOiJob2xsYW5fMTIzIiwiZW1haWwiOiJob2xsYW5kQGdtYWlsLmNvbSIsInByb2ZpbGVJbWciOm51bGwsInJvbGUiOiJhZG1pbiJ9LCJpYXQiOjE2MTM3MjIxMDIsImV4cCI6MTYxMzczMjEwMn0.pRp9So7N8tj82-m9mZr6aPLLBInerDmij3AN9ugc7n8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/nguyenvanhuyen/Pictures/Photos Library.photoslibrary/originals/3/3DF4D502-BBE3-4006-805D-71BBB6509797.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
