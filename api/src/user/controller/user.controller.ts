@@ -1,3 +1,4 @@
+import { UserIsUser } from './../../auth/guards/userisuser.guards';
 /* eslint-disable prettier/prettier */
 import { UserService } from './../service/user.service';
 import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards, Query, UploadedFile, UseInterceptors, Req, Res } from '@nestjs/common';
@@ -82,6 +83,7 @@ export class UserController {
         return this.userService.deleteOne(Number(id));
     }
 
+    @UseGuards(JwtAuthGuard, UserIsUser)
     @Put(':id')
     updateOne(@Body() user: User, @Param('id') id: number): Observable<any> {
         return this.userService.updateOne(Number(id), user);

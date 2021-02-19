@@ -1,3 +1,4 @@
+import { UserIsUser } from './guards/userisuser.guards';
 import { UserModule } from './../user/user.module';
 import { JwtStrategy } from './guards/jwt-strategy';
 import { JwtAuthGuard } from './guards/jwt-guards';
@@ -21,7 +22,7 @@ import { RolesGuard } from './guards/roles.guards';
             })
         })
     ],
-    providers: [AuthService, JwtAuthGuard, RolesGuard, JwtStrategy],
+    providers: [AuthService, JwtAuthGuard, RolesGuard, JwtStrategy, UserIsUser],
     exports: [AuthService]
 })
 export class AuthModule {}
