@@ -13,6 +13,8 @@ export class UserEntity {
   email: string;
   @Column()
   password: string;
+  @Column({ nullable: true })
+  profileImg: string;
   @Column({ type: 'enum', enum: UserRole, default: UserRole.USER })
   role: UserRole;
   @BeforeInsert()
