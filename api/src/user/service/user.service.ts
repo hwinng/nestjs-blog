@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, UpdateResult } from 'typeorm';
+import { Like, Repository, UpdateResult } from 'typeorm';
 import { User, UserRole } from '../models/user.interface';
 import { from, Observable, throwError } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
@@ -21,7 +21,7 @@ export class UserService {
     ){}
 
     create(user: User): Observable<User> {
-        const {name, email, password, username, role} = user;
+        const {name, email, password, username} = user;
         return this.authService.hashPassword(password).pipe(
             switchMap((hashedPassword: string) => {
                 const newUser = new UserEntity();
@@ -66,7 +66,39 @@ export class UserService {
                 return userPageable;
             })
         );
-      }
+    }
+
+    paginateFilterByUsername(options: IPaginationOptions, user: User): Observable<Pagination<User>>{
+        return from(this.userRepository.findAndCount({
+            skip: Number(options.page) * Number(options.limit) || 0,
+            take: Number(options.limit) || 10,
+            order: {id: "ASC"},
+            select: ['id', 'name', 'username', 'email', 'role'],
+            where: [
+                { username: Like(`%${user.username}%`)}
+            ]
+        })).pipe(
+            map(([users, totalUsers]) => {
+                const usersPageable: Pagination<User> = {
+                    items: users,
+                    links: {
+                        first: options.route + `?limit=${options.limit}`,
+                        previous: options.route + ``,
+                        next: options.route + `?limit=${options.limit}&page=${Number(options.page) +1}`,
+                        last: options.route + `?limit=${options.limit}&page=${Math.ceil(totalUsers / Number(options.limit))}`
+                    },
+                    meta: {
+                        currentPage: Number(options.page),
+                        itemCount: users.length,
+                        itemsPerPage: Number(options.limit),
+                        totalItems: totalUsers,
+                        totalPages: Math.ceil(totalUsers / Number(options.limit))
+                    }
+                };              
+                return usersPageable;
+            })
+        )
+    }
 
     deleteOne(id: number): Observable<any> {
         return from(this.userRepository.delete(id));
